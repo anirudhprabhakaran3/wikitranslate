@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+New Project
+{% endblock %}
+
+{% block content %}
+
+<div class="card w-75 mx-auto mt-5">
+    <div class="card-body">
+        <form class="mb-3" method="POST">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">New Project</h1>
+            {{ form | crispy }}
+            <button type="submit" class="btn btn-success mt-2">Go <i class="fas fa-long-arrow-alt-right"></i></button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
