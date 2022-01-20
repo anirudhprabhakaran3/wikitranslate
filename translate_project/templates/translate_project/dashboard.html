@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="text-center mt-3 mb-3">
+    <h1 class="display-3">
+        Dashboard
+    </h1>
+</div>
+
+<div class="container">
+    <h1 class="h1">Statistics</h1>
+    <ul>
+        <li>Projects - {{ projects_count }}</li>
+        <li>Sentences - {{ sentences_count }}</li>
+    </ul>
+</div>
+
+<div class="container">
+    <h1 class="h1">Projects</h1>
+    <table class="w-50 table table-striped table-hover">
+        <thead>
+            <th scope="col">ID</th>
+            <th scope="col">Wiki Title</th>
+            <th scope="col">Language</th>
+            <th scope="col">Actions</th>
+        </thead>
+        {% for project in projects %}
+            <tr>
+                <th scope="row"> {{ project.id }} </th>
+                <td> {{ project.wiki_title }} </td>
+                <td> {{ project.get_target_language_display }} </td>
+                <td> <a href="{% url 'view_project' project_pk=project.pk%}" class="btn btn-primary">View</a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

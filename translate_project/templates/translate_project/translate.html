@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Translate
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>
+        Translating "{{ project.wiki_title }}" to {{ project.get_target_language_display }}
+    </h1>
+</div>
+
+<div class="container">
+    <table class="table table-hover table-striped">
+        <thead>
+            <th scope="col">ID</th>
+            <th scope="col">Original Sentence</th>
+            <th scope="col">Translation</th>
+        </thead>
+        <tbody>
+            {% for sentence in sentences  %}
+                <tr>
+                    <th scope="row">{{ sentence.id }}</th>
+                    <td class="w-50">{{ sentence.original_sentence }}</td>
+                    <td class="w-50">
+                        <form method="post">
+                            {% if sentence.translated_sentence %}
+                                <input type="text" class="form-control" value="{{ sentence.translated_sentence }}">
+                                <button type="submit" class="btn btn-warning mb-2">Update</button>
+                            {% else %}
+                                <input type="text" class="form-control" placeholder="Enter translation">
+                                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
