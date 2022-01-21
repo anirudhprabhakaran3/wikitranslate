@@ -62,12 +62,17 @@ The server is now running. You can now access the application at  `http://localh
 
 ## Models
 
-There are two models in the application - `Project` and `Sentence`.
+There are three models in the application - `Translator`, `Project` and `Sentence`.
+
+`Translator` is the model for each individual. It contains
+- `user`: A One-To-One relationship with Django's `User` model.
+- `is_manager`: A boolean field which keeps track of whether a particular translator is a manager or not.
 
 `Project` is the model for each project. It contains
 - `id`: Unique id of the project
 - `wiki_title`: Title of the Wikipedia page
 - `target_language`: Target language of the translation project
+- `appointed_translator`: Foreign key to the translator who is appointed to the project
 
 `Sentence` is the model for every translated sentence. It contains
 - `id`: Unique id of the sentence
@@ -75,11 +80,17 @@ There are two models in the application - `Project` and `Sentence`.
 - `original_sentence`: The original sentence
 - `translated_sentence`: The translated sentence
 
+## Implementation
+
+In my implementation, I leverage the Django Authentication System. Since I didn't have to store lots of data, I didn't extend `AbstractUser`, but instead, created `Translator`, which has a One-To-One relationship with `User`.
+
+Also, I have designed my app in a way in which a particular translator can only be alloted a single project at a time. Once a project is complete, the translator can be removed from that, and work on another project.
+
 ## Tech
 The project is made using the Django framework based on Python.
 
 I have used SQLite for the database, as there is no need for a production ready database for a demo project.
 
-For the frontend, I am using Bootstrap 5. The forms are rendered using Crispy Forms, using the Bootstrap framework.
+For the frontend, I am using Bootstrap 5. The forms are rendered using Crispy Forms, using the Bootstrap framework. Tables are rendered using DataTables, a jQuery plugin.
 
 I am leveraging the Messages service to display messages to the user. I am using AJAX to send the AJAX request to the server to update the translated sentences.

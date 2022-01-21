@@ -10,6 +10,14 @@
     <ul>
         <li><b>Title of Wikipedia page</b> - {{ project.wiki_title }}</li>
         <li><b>Language to be translated to</b> - {{ project.get_target_language_display }}</li>
+        <li>
+            <b>Translator Allotted</b> - 
+            {% if project.appointed_translator %}
+                {{ project.appointed_translator }}
+            {% else %}
+                None
+            {% endif %}
+        </li>
     </ul>
 </div>
 
