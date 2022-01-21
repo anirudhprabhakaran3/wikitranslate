@@ -9,6 +9,14 @@ New Project
 
 <div class="card w-75 mx-auto mt-5">
     <div class="card-body">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger">
+                    <strong>{{ message }}</strong>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
         <form class="mb-3" method="POST">
             {% csrf_token %}
             <h1 class="h3 mb-3 fw-normal">New Project</h1>

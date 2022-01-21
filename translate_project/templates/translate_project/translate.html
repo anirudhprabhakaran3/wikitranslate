@@ -12,7 +12,7 @@ Translate
 </div>
 
 <div class="container">
-    <table class="table table-hover table-striped">
+    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <th scope="col">ID</th>
             <th scope="col">Original Sentence</th>
@@ -24,12 +24,14 @@ Translate
                     <th scope="row">{{ sentence.id }}</th>
                     <td class="w-50">{{ sentence.original_sentence }}</td>
                     <td class="w-50">
-                        <form method="post">
+                        <form method="post" action="{% url 'submit_translation' %}" class="translate_form">
+                            {% csrf_token %}
+                            <input type="hidden" name="sentence_id" value="{{ sentence.id }}">
                             {% if sentence.translated_sentence %}
-                                <input type="text" class="form-control" value="{{ sentence.translated_sentence }}">
+                                <input type="text" class="form-control" value="{{ sentence.translated_sentence }}" name="translated_sentence">
                                 <button type="submit" class="btn btn-warning mb-2">Update</button>
                             {% else %}
-                                <input type="text" class="form-control" placeholder="Enter translation">
+                                <input type="text" class="form-control" placeholder="Enter translation" name="translated_sentence">
                                 <button type="submit" class="btn btn-primary mb-2">Submit</button>
                             {% endif %}
                         </form>
@@ -39,4 +41,24 @@ Translate
         </tbody>
     </table>
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $('.translate_form').submit(function (e) {
+        e.preventDefault();
+        const serializedData = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'submit_translation' %}",
+            data: serializedData,
+            success: function(response) {
+                alert("Successfully submitted translation");
+            },
+            error: function(request) {
+                alert("Error submitting translation. Try again later!");
+            }
+        })
+    });
+</script>
 {% endblock %}
