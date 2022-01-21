@@ -1,11 +1,6 @@
 # WikiTranslate
 
-<img src="https://img.shields.io/github/license/anirudhprabhakaran3/wikitranslate">
-<img src="https://img.shields.io/github/languages/top/anirudhprabhakaran3/wikitranslate">
-<img src="https://img.shields.io/github/languages/code-size/anirudhprabhakaran3/wikitranslate">
-<img src="https://img.shields.io/github/issues/anirudhprabhakaran3/wikitranslate">
-<img src="https://img.shields.io/github/issues-pr/anirudhprabhakaran3/wikitranslate">
-<img src="https://img.shields.io/github/last-commit/anirudhprabhakaran3/wikitranslate">
+<img src="https://img.shields.io/github/license/anirudhprabhakaran3/wikitranslate"><img src="https://img.shields.io/github/languages/top/anirudhprabhakaran3/wikitranslate"><img src="https://img.shields.io/github/languages/code-size/anirudhprabhakaran3/wikitranslate"><img src="https://img.shields.io/github/issues/anirudhprabhakaran3/wikitranslate"><img src="https://img.shields.io/github/issues-pr/anirudhprabhakaran3/wikitranslate"><img src="https://img.shields.io/github/last-commit/anirudhprabhakaran3/wikitranslate">
 
 
 Welcome to WikiTranslate! This is a web portal where you can enter the name of a Wikipedia page. The service will download the summary of the page, and you can translate the sentences into the language you are familiar with.
