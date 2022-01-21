@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Signup
+{% endblock %}
+
+{% block content %}
+
+<div class="card w-75 mx-auto mt-5">
+    <div class="card-body">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger">
+                    <strong>{{ message }}</strong>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form class="mb-3" method="POST">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">Signup</h1>
+            {{ form | crispy }}
+            <button type="submit" class="btn btn-primary mt-2">Signup</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

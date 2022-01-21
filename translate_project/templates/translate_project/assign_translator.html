@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Assign Translator
+{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h1 class="display-3">Assign Translator</h1>
+</div>
+
+<div class="container mb-5">
+    <p>
+        <b>Wiki:</b> {{ project.wiki_title }}
+    </p>
+    <p>
+        <b>Target Translation:</b> {{ project.get_target_language_display }}
+    </p>
+    <p>
+        <form method="post" class="w-50">
+            {% csrf_token %}
+            <b>Translator</b>
+            {{ form | crispy }}
+            <button class="btn btn-success" type="submit">Assign</button>
+        </form>
+    </p>
+</div>
+{% endblock %}

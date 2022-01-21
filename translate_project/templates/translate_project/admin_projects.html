@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Admin - View Projects
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+{% if messages %}
+    {% for message in messages %}
+        <p class="alert alert-success mt-2">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+</div>
+
+<div class="container">
+    <h1 class="mb-5">Projects</h1>
+    <table id="datatable" class="table table-striped table-bordered mt-5" style="width:100%">
+        <thead>
+            <th scope="col">ID</th>
+            <th scope="col">Wiki Title</th>
+            <th scope="col">Language</th>
+            <th scope="col">Translator</th>
+            <th scope="col">Actions</th>
+        </thead>
+        {% for project in projects %}
+            <tr>
+                <th scope="row"> {{ project.id }} </th>
+                <td> {{ project.wiki_title }} </td>
+                <td> {{ project.get_target_language_display }} </td>
+                <td> {{ project.appointed_translator }} </td>
+                <td>
+                    <a href="{% url 'view_project' project_pk=project.pk%}" class="btn btn-primary">View</a>
+                    <a href="{% url 'assign_translator' project_pk=project.pk%}" class="btn btn-success">Assign/Change Translator</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

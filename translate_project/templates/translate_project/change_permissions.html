@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Change Permissions
+{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h1 class="display-3">Change Permissions</h1>
+</div>
+
+<div class="container mb-5">
+    <p>
+        <b>Username:</b> {{ translator.user.username }}
+    </p>
+    <p>
+        <form method="post" class="w-50">
+            {% csrf_token %}
+            <b>Manager?</b>
+            {{ form | crispy }}
+            <button class="btn btn-success" type="submit">Assign</button>
+        </form>
+    </p>
+</div>
+{% endblock %}

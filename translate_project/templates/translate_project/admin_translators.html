@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Admin - View Translators
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <p class="alert alert-danger mt-2">{{ message }}</p>
+        {% else %}
+            <p class="alert alert-success mt-2">{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</div>
+
+<div class="container">
+    <h1 class="mb-5">Translators</h1>
+    <table id="datatable" class="table table-striped table-bordered mt-5" style="width:100%">
+        <thead>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Manager?</th>
+            <th scope="col">Actions</th>
+        </thead>
+        {% for t in translators %}
+            <tr>
+                <th scope="row"> {{ t.id }} </th>
+                <td> {{ t.user.username }} </td>
+                <td> {{ t.is_manager }} </td>
+                <td>
+                    <a href="{% url 'change_permissions' translator_pk=t.id %}" class="btn btn-success">Update Permissions</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

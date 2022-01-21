@@ -11,6 +11,21 @@ Dashboard
     </h1>
 </div>
 
+{% if projects_count == 0 %}
+    <div class="container">
+        <p class="alert alert-success">No projects have been assigned to you yet.</p>
+    </div>
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger">
+            <strong>{{ message }}</strong>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+
 <div class="container">
     <h1 class="h1">Statistics</h1>
     <ul>
