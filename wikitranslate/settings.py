@@ -132,5 +132,7 @@ LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/dashboard'
 LOGOUT_REDIRECT_URL = '/'
 
+USE_I18N = False
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())

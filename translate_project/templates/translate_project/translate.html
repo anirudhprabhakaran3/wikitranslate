@@ -7,7 +7,7 @@ Translate
 {% block content %}
 <div class="container mt-5">
     <h1>
-        Translating "{{ project.wiki_title }}" to {{ project.get_target_language_display }}
+        Translating "{{ project.wiki_title }}" to {{ project.get_target_language_display }} {{ project.target_language }}
     </h1>
 </div>
 
@@ -31,7 +31,7 @@ Translate
                                 <input type="text" class="form-control" value="{{ sentence.translated_sentence }}" name="translated_sentence">
                                 <button type="submit" class="btn btn-warning mb-2">Update</button>
                             {% else %}
-                                <input type="text" class="form-control" placeholder="Enter translation" name="translated_sentence">
+                                <input type="text" class="form-control" placeholder="Enter translation" name="translated_sentence" id="transliteration-{{sentence.id}}">
                                 <button type="submit" class="btn btn-primary mb-2">Submit</button>
                             {% endif %}
                         </form>
@@ -61,4 +61,11 @@ Translate
         })
     });
 </script>
+
+{% for sentence in sentences %}
+    <script>
+        enableTransliteration(document.getElementById("transliteration-{{sentence.id}}"), "{{ project.target_language }}");
+    </script>
+{% endfor %}
+
 {% endblock %}
