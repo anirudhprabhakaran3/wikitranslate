@@ -2,7 +2,6 @@ from wikipediaapi import Wikipedia
 import nltk
 
 def does_wiki_exist(title):
-    nltk.download('punkt')
     wiki_wiki = Wikipedia('en')
     return wiki_wiki.page(title).exists()
 
